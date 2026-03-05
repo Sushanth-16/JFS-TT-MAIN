@@ -15,14 +15,14 @@ function Reg() {
     e.preventDefault();
 
     try {
-        const res = await axios.post(
+        await axios.post(
             "https://JFS-BACKEND-TT.onrender.com/api/register",
             data
         );
 
-        alert("Registration done");
+        alert("Registration successful!");
     } catch (err) {
-        alert(err.response?.data || "Registration failed");
+        alert(err.response?.data?.message || "Registration failed");
     }
 };
     return (
