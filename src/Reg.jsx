@@ -11,16 +11,21 @@ function Reg() {
     const handleChange=(e)=>{
         setData({...data,[e.target.name]:e.target.value})
     };
-    const submit=async (e)=>{
-        try{
-            const res= await axios.post("http://localhost:8080/reg",data);
-            axios.post("http://localhost:8080/api/register",data);
-            alert(res.data);
-        }catch(err){
-            alert(err.response?.data||"An error occurred");
-        }
-    };
-  return (
+   const submit = async (e) => {
+    e.preventDefault();
+
+    try {
+        const res = await axios.post(
+            "https://JFS-BACKEND-TT.onrender.com/api/register",
+            data
+        );
+
+        alert("Registration done");
+    } catch (err) {
+        alert(err.response?.data || "Registration failed");
+    }
+};
+    return (
     <>
       <h2>Registration Page</h2>
       <p>Please fill in the form to register.</p>
@@ -31,7 +36,7 @@ function Reg() {
         <button type="submit">Register</button>
       </form>
     </>
-  );
+    );
 }
 
 export default Reg;
